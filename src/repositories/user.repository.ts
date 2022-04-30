@@ -9,9 +9,8 @@ class UserRepository {
             FROM app_user
         `;
 
-        const result = await db.query<User>(query);
-        const rows = result.rows;
-
+        const { rows } = await db.query<User>(query);
+    
         return rows || [];
     }
 }
