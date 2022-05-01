@@ -13,6 +13,20 @@ class UserRepository {
     
         return rows || [];
     }
+
+    async findById(uuid: string): Promise<User> {
+        const query = `
+            SELECT uuid, username 
+            FROM app_user 
+            WHERE uuid = $1
+        `;
+
+        const values = [uuid];
+        const { rows } = await db.query<User>(query, values);
+        const [ user ] = rows; 
+
+        return user;
+    }
 }
 
 
