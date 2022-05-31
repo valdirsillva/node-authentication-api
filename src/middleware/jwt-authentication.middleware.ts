@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import ForbiddenError from "../models/errors/forbidden.error.model";
 import JWT from 'jsonwebtoken';
 
-async function bearerAuthenticationMiddleware(req: Request, res: Response, next: NextFunction) {
+async function jwtAuthenticationMiddleware(req: Request, res: Response, next: NextFunction) {
    try {
       
     const authorizationHeader = req.headers['authorization'];
@@ -35,4 +35,4 @@ async function bearerAuthenticationMiddleware(req: Request, res: Response, next:
    }
 }
 
-export default bearerAuthenticationMiddleware;
+export default jwtAuthenticationMiddleware;
