@@ -1,9 +1,9 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import JWT from 'jsonwebtoken';
 import { StatusCodes } from 'http-status-codes';
-import basicAuthenticationMiddleware from '../middleware/basic-authentication.middleware';
 import ForbiddenError from '../models/errors/forbidden.error.model';
 import jwtAuthenticationMiddleware from '../middleware/jwt-authentication.middleware';
+import basicAuthenticationMiddleware from '../middleware/basic-authentication.middleware';
 
 const authorizationRoute = Router();
 
@@ -24,6 +24,7 @@ authorizationRoute.post('/token', basicAuthenticationMiddleware, async (req: Req
         const secretKey = 'secret_key';
 
         const jwt = JWT.sign(jwtPayload, secretKey, jwtOptions);
+
         res.status(StatusCodes.OK).json( { token: jwt } );
        
     } catch(error) {

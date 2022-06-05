@@ -10,10 +10,12 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(usersRoute);
 app.use(statusRoute);
-app.use(jwtAuthenticationMiddleware, usersRoute);
+
 app.use(authorizationRoute);
+app.use(jwtAuthenticationMiddleware);
+app.use(usersRoute);
+
 
 // configuração dos Handlers error => middleware
 app.use(errorHandler);
